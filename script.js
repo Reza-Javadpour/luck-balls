@@ -139,15 +139,16 @@ function wallCollision(ball) {
 }
 
 function show_winner() {
-    alert(winnerID)
-    // $.ajax({
+    // alert(winnerID);
     //     type: 'post',
     //     url: 'show-winner.php',
     //     data: {
     //         source1: winnerID
     //     }
+// $.ajax({
     // });
-    window.location.href = "./show-winner.php";
+    var a = "./show-winner.php?name=" + winnerID;
+    window.location.href = a;
 }
 
 function ballCollision() {

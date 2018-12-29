@@ -10,11 +10,13 @@
 
     <h1>Show Winner Page</h1>
     <h1>
-<!--    --><?php
-//        $e=$_POST['source1'];
-//        echo $e;
-//    ?>
+    <?php
+        $e=$_GET['name'];
+        echo $e;
+    ?>
     </h1>
+
+
 
 </body>
 </html>
