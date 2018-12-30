@@ -1,10 +1,3 @@
-function randomColor() {
-    red = Math.floor(Math.random() * 3) * 127;
-    green = Math.floor(Math.random() * 3) * 127;
-    blue = Math.floor(Math.random() * 3) * 127;
-    rc = "rgb(" + red + ", " + green + ", " + blue + ")";
-    return rc;
-}
 
 function randomX() {
     x = Math.floor(Math.random() * canvas.width);

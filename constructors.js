@@ -1,14 +1,14 @@
-function Ball(x, y, radius, userID) {
+function Ball(x, y, radius, userID, color) {
     this.radius = radius;
     this.userID = userID;
     this.dx = randomDx();
     this.dy = randomDy();
+    this.color = color
     // mass is that of a sphere as opposed to circle.
     // it *does* make a difference.
     this.mass = this.radius * this.radius * this.radius;
     this.x = x;
     this.y = (y>400) ? (y-150) : y;
-    this.color = "#007DB7";
 
     this.drawR = function() {
         ctx.beginPath();
@@ -64,8 +64,8 @@ function rect(x, y, width, height) {
     this.drawR = function() {
         ctx.beginPath();
         ctx.rect(0, 450, this.width, this.height);
-        ctx.rect(280, 450, this.width, this.height);
-        ctx.fillStyle = "#00A286";
+        ctx.rect(270, 450, this.width, this.height);
+        ctx.fillStyle = "#0e3769";
         ctx.strokeStyle = "rgba(0,0,0,0.1)";
         ctx.stroke();
         ctx.fill();

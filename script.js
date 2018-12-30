@@ -3,7 +3,7 @@ var ctx = canvas.getContext("2d");
 var winnerID = "";
 
 
-var user_count = 50;
+var user_count = 2;
 var objArray = [];
 
 var paused = true;
@@ -14,7 +14,7 @@ setTimeout(function () {
 var totalKineticEnergy = 0;
 var bumped = false;
 var leftHeld = false;
-var upHeld = false;
+var upHeld = true;
 var rightHeld = false;
 var downHeld = false;
 
@@ -28,6 +28,10 @@ var soundOn = true;
 var clearCanv = true;
 
 var bigBalls = false;
+
+setTimeout(function () {
+    upHeld = false;
+},6000);
 
 // Comment this twi line if you want disable key shortcuts :
 document.addEventListener("keydown", keyDownHandler);
@@ -104,24 +108,22 @@ function canvasBackground() {
 
 function wallCollision(ball) {
     if (ball.x - ball.radius + ball.dx < 0 ||
-        ((ball.x - ball.radius + ball.dx < 220) && ((ball.y + 12) > 450)) ||
-        ((ball.x + ball.radius + ball.dx > 280) && ((ball.y + 12) > 450)) ||
+        ((ball.x - ball.radius + ball.dx < 230) && ((ball.y + 12) > 450)) ||
+        ((ball.x + ball.radius + ball.dx > 270) && ((ball.y + 12) > 450)) ||
         ball.x + ball.radius + ball.dx > canvas.width) {
         ball.dx *= -1;
     }
     if (ball.y - ball.radius + ball.dy < 0 ||
-        ((ball.y + ball.radius + ball.dy > canvas.height - 100) && (ball.x - 12 < 220)) ||
-        ((ball.y + ball.radius + ball.dy > canvas.height - 100) && (ball.x + 12 > 280)) ||
-        (ball.y + ball.radius + ball.dy > canvas.height) && ball.x > 220) {
+        ((ball.y + ball.radius + ball.dy > canvas.height - 100) && (ball.x - 12 < 230)) ||
+        ((ball.y + ball.radius + ball.dy > canvas.height - 100) && (ball.x + 12 > 270)) ||
+        (ball.y + ball.radius + ball.dy > canvas.height) && ball.x > 230) {
         ball.dy *= -1;
     }
-    if(ball.y - ball.radius + ball.dy > 500){
+    if(ball.y - ball.radius + ball.dy > 520){
         paused = true;
         winnerID = ball.userID;
         show_winner();
-        ball.y -= (12 * 2);
-    //    redirect here
-    //     window.location.href = "./show-winner.php";
+        ball.y -= (12);
         show_winner();
     }
     if (ball.y + ball.radius > canvas.height) {
@@ -250,21 +252,53 @@ function logger() {
     //log some stuff
 }
 
+function randomColor() {
+    var n = Math.floor(Math.random() * 8) + 1;
+    var color;
+    switch (n) {
+        case 1:
+            color = "#e900c5";
+            break;
+        case 2:
+            color = "#692CB4";
+            break;
+        case 3:
+            color = "#00A5F4";
+            break;
+        case 4:
+            color = "#FF9400";
+            break;
+        case 5:
+            color = "#0eb360";
+            break;
+        case 6:
+            color = "#FF4D1F";
+            break;
+        case 7:
+            color = "#FF3334";
+            break;
+        case 8:
+            color = "#00de22";
+            break;
+    }
+    return color;
+}
+
 // Ball Number :
 // spawn the initial small thingies.
 for (i = 100; i<100+user_count; i++) {
-    objArray[objArray.length] = new Ball(randomX(), randomY(), 12, i+1);
+    objArray[objArray.length] = new Ball(randomX(), randomY(), 12, i+1, randomColor());
     // objArray[11] = new Ball(randomX(), randomY(), 40, "Test")
-    objArray[11] = new rect(0, 450, 220,100);
+    objArray[11] = new rect(0, 450, 230,100);
     // objArray[11] = new Ball(100,100,30,"Test");
 }
 
-bigBalls = false;
+// bigBalls = true;
 
 // manually spawn the few large ones that
 // start with no velocity. because i'm lazy.
-// for (i = 0; i<7; i++) {
-//     var temp = new Ball(randomX(), randomY(), randomRadius());
+// for (i = 0; i<10; i++) {
+//     var temp = new Ball(randomX(), randomY(), 30, "تور کرمان");
 //     temp.dx = 0;
 //     temp.dy = 0;
 //     objArray[objArray.length] = temp;

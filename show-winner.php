@@ -15,6 +15,7 @@
         echo $e;
     ?>
     </h1>
+    <a href="./">go Back</a>
 
 
 
